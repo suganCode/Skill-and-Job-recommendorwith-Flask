@@ -184,7 +184,7 @@ def exploreJobs():
 
         headers = {
         'content-type': "application/json",
-        'X-RapidAPI-Key': "f844d89005msh1e3f82ddc9fd4d9p12657djsnc1a3cf230946",
+        'X-RapidAPI-Key': "f844d89005msh1e3f82ddc9fd4d9p12657djsnc1a3cf230946a",
         'X-RapidAPI-Host': "linkedin-jobs-scraper-api.p.rapidapi.com"
          }
 
