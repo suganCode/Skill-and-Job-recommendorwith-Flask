@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to find your job - Careerbuild</title>
+    <link rel="icon" type="image/gif/png/jfif" href="../static/images/th.jfif">
+    <script src="https://kit.fontawesome.com/7bb9495e7b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginstyles.css')}}">
+    <script src="{{url_for('static', filename='index.js')}}" defer></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+
+        .modal{
+            text-align: center;
+            width:100%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .modal_bottom{
+            background-color: #2246C2;
+            padding:24px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .modal_bottom p{
+            font-family: 'Zilla Slab';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 38px;
+            display: flex;
+            align-items: center;
+            color: #F8F8F8;
+        }
+
+        .modal_send{
+            background: #FBFBFB;
+            border-radius: 3px;
+            margin-top: 12px;
+            border: none;
+            padding:16px 8px;
+            outline:none;
+            margin-right: 16px;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 128.69%;
+            text-align: center;
+            color: #2246C2;
+        }
+    </style>
+<script src="{{ url_for('static', filename='chatbot.js')}}"></script>
+
+</head>
+<body id="body">
+
+
+    <div class="menu_icon" id="menu">
+        <div class="first_div"></div>
+        <div class="second_div"></div>
+        <div class="third_div"></div>
+    </div>
+
+    <header>
+        <div class="brand_box" style="cursor: pointer;">
+            <b style="color:red;">CAREERBUILD</b>
+        </div>
+        <nav>
+            <ul class="nav_links" id="nav_links">
+                <li class="nav_link"><a href="/jobs">Contact info 💥</a></li>
+                {% if session['email'] %}
+                <li class="nav_link special_link" id="special_link"><a href="/profile" id="contact_link">Your Profile 😎</a></li>
+                {% else %}
+                <li class="nav_link special_link" id="special_link"><a href="/register" id="contact_link">Login / Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="footer">
+        <div class="header">
+            <p class="head">Login to <span style="color:#2246C2">Pursuing your goals</span></p>
+            <p class="description">You are at right time. Start learn and apply for jobs</p>
+        </div>
+        <div class="body">
+            <div class="content" style="background-color: #2c3453;;">
+                <div style="padding-top: 10px;text-align: center;margin-top:10px;font-style: italic;">
+                    <b style="color:red;font-size: 20px;"> {{ smsg }} </b>
+                    <b style="color:rgb(4, 222, 4);font-size: 20px;" >{{msg}}</b> 
+                </div>
+                <form  action="{{url_for('loginrec') }}" method="post"  id="form"  class="form_footer" >
+                    <div> 
+                        <input type="email" id="g" name="email" value="{{mail}}" placeholder="Your Email">
+                        <input type="password" name="password" value="{{passwd}}" placeholder="Your Password">
+                        <span style="font-size:14px; color:white;"></span>
+                    </div>
+                     <div><input id="bn" type="submit"  />
+                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="header">
+            <p class="description" style="cursor:pointer;" onclick="location.href='/register'">Don't have an account?<span style="color:#2246C2"> Register</span></p>
+        </div>
+    </div>
+</body>    
+<script>
+
+var btn=document.getElementById('btn');
+
+ //btn.addEventListener('click',dispath)
+
+
+
+ email=$('')
+
+ $(document).ready(function() {
+
+
+  $("#myform").on("submit", function(event) {
+
+   event.preventDefault();
+   
+   var formData = $("#myform").serialize();
+
+   console.log(formData)
+   console.log(typeof(formData))
+    
+ $.ajax({
+    method: 'POST',
+    url: '/loginrec',  
+    data: formData,
+    success: function (response) {
+        // Handle the success response
+        console.log(response);
+        window.location.href="profile.html"
+        console.log(typeof(response))
+    },
+    error: function (error) {
+        // Handle errors
+        console.log(error);
+    }
+});
+
+
+  })
+
+
+ }
+ )
+
+
+// function dispath(event){
+
+// event.preventDefault();
+
+// console.log(event);
+
+// alert("")
+
+// }
+
+
+</script>
+

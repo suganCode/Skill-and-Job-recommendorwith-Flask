@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careerbuild</title>
+    <link rel="icon" type="image/gif/png/jfif" href="../static/images/th.jfif">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7bb9495e7b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/growthzonestyles.css') }}">
+    <script src="{{ url_for('static', filename='index.js') }}" defer></script>
+
+    <script src="{{ url_for('static', filename='chatbot.js')}}"></script>
+
+
+</head>
+<body id="body">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <div class="menu_icon" id="menu">
+        <div class="first_div"></div>
+        <div class="second_div"></div>
+        <div class="third_div"></div>
+    </div>
+
+    <header>
+        <div  class="brand_box" style="cursor: pointer;">
+            <b style="color:red;">CAREERBUILD</b>
+        </div>
+        <nav>
+            <ul class="nav_links" id="nav_links">
+                <li class="nav_link"><a href="/jobs">Skills 💥</a></li>
+                            {% if session['email'] %}
+                            <li class="nav_link special_link" id="special_link"><a href="/profile" id="contact_link">Your Profile 😎</a></li>
+                            {% else %}
+                            <li class="nav_link special_link" id="special_link"><a href="/register" id="contact_link">Login / Register</a></li>
+                            {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {%  if jobs['message']  %}
+
+    <div style="text-align: center;padding: 20px;">
+        <h1 style="color:green;">{{jobs['message']}}</h1>
+    </div>
+
+    {% else %}
+
+    {% for datas in jobs %}
+
+    {% if datas['companyUrl']!=""  %}
+
+    <div class="body">
+        <div class="growths">
+            <div class="growth" style="cursor:pointer;">
+                <p class="growth_title">{{ datas['companyName'] }} <span class="growth_category">Posted On : {{ datas['publishedAt'] }}</span></p>
+                <p class="growth_title">{{ datas['title'] }} <span class="growth_category">{{ datas['location'] }}</span></p>
+                <p class="growth_title">{{ datas['postedTime'] }} <span class="growth_category">{{ datas['applicationsCount'] }}</span></p>
+                <p target="_blank" onclick="location.href=`{{ datas['companyUrl'] }}`" class="growth_title">Verify Company</p>
+                <p target="_blank" onclick="location.href=`{{ datas['jobUrl'] }}`" class="growth_title">Apply here</p>
+            </div>
+        </div>
+</div>
+
+    <!-- Your HTML code here -->
+     {% endif %}
+
+    {% endfor %}
+    
+    {% endif %}
+
+    
+</body>
+</html>

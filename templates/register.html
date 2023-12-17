@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register to find your job - Careerbuild</title>
+    <link rel="icon" type="image/gif/png/jfif" href="../static/images/th.jfif">
+    <script src="https://kit.fontawesome.com/7bb9495e7b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registerstyles.css') }}">
+    <script src="{{ url_for('static', filename='index.js') }}" defer></script>
+
+
+    <script src="{{ url_for('static', filename='chatbot.js')}}"></script>
+
+
+</head>
+<body id="body">
+
+    <div class="menu_icon" id="menu">
+        <div class="first_div"></div>
+        <div class="second_div"></div>
+        <div class="third_div"></div>
+    </div>
+
+
+    <header>
+        <div class="brand_box" style="cursor: pointer;">
+            <b style="color:red;">CAREERBUILD</b>
+        </div>
+        <nav>
+            <ul class="nav_links" id="nav_links">
+                <li class="nav_link"><a href="/jobs">Contact int💥</a></li>
+                {% if session['email'] %}
+                            <li class="nav_link special_link" id="special_link"><a href="/profile" id="contact_link">Your Profile 😎</a></li>
+                            {% else %}
+                            <li class="nav_link special_link" id="special_link"><a href="/register" id="contact_link">Login / Register</a></li>
+                            {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="footer">
+        <div class="header">
+            <p class="head">Register to <span style="color:#2246C2">move ahead in your life</span></p>
+            <p class="description">Fill your basic information. We will contact you further guidance till job recommendation based on your skill</p>
+        </div>
+        <div class="body"> 
+        <div class="content" style="background-color: #2c3453;;"> 
+                
+              <form action="{{ url_for('registerrec') }}" 
+                method="POST" class="form_footer">
+                <div style="text-align: center;margin-top:10px">
+                    <b style="color:red;margin: auto;font-style: italic;font-size: 20px;"> {{msg}}  {{ smsg }} </b>
+                 </div>
+                    <div>
+                        <input type="text" value="{{usrname}}" name="name" placeholder="Your Name"> <span style="font-size:14px; color:white;"></span>
+                        <input type="email" value="{{usremail}}" name="email" placeholder="Your Email"> <span style="font-size:14px; color:white;"></span>
+                        <input size="10" type="number" value="{{usrnumber}}"  name="number" placeholder="Your Mobile Number"> <span style="font-size:14px; color:white;"></span>
+                        <input type="password" value="{{usrpassword}}" name="password" placeholder="Your Password"> <span style="font-size:14px; color:white;"></span>
+                        <!-- change -->
+                    </div>
+                    <div><button type="submit" name="submit" class="button_send" style="margin:16px auto; cursor: pointer;">REGISTER</button></div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="header">
+            <p class="description">Already have an account ?</p>
+            <p class="description" style="cursor:pointer;" onclick="location.href='/login';"><span style="color:#2246C2">Let's Login</span></p>
+        </div>
+    </div>
+</body>    
