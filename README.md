@@ -15,6 +15,7 @@ Technology used in Serverside
 
       Python Flask
       SQL
+      API -For fetching data about current job openings from rapid.com 
 
 Database 
 
