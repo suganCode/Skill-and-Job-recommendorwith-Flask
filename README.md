@@ -1,6 +1,6 @@
 ﻿# Skill-and-Job-recommendorwith-Flask
 
-I hosted my project on render.com . you can visit my project by  below link
+I hosted my project on render.com . you can visit my project by clicking below link
 
 https://sugan-careerbuildapp.onrender.com
 
